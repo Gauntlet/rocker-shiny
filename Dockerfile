@@ -4,7 +4,3 @@ FROM rocker/shiny:latest
 RUN install2.r shinydashboard ggplot2 RSQLite dplyr pool fuzzyjoin lubridate
 
 EXPOSE 3838
-
-COPY shiny-server.sh /usr/bin/shiny-server.sh
-
-CMD ["/usr/bin/shiny-server.sh"]

@@ -1,9 +1,10 @@
 FROM rocker/shiny:latest
 
-RUN  echo 'install.packages(c("ggplot2","RSQLite","dplyr","pool","fuzzyjoin","lubridate"), \
-repos="http://cran.us.r-project.org", \
-dependencies=TRUE)' > /tmp/packages.R \
-  && Rscript /tmp/packages.R
+# Install packages required by apps.
+RUN install2.r shinydashboard ggplot2 RSQLite dplyr pool fuzzyjoin lubridate
 
 EXPOSE 3838
+
+COPY shiny-server.sh /usr/bin/shiny-server.sh
+
 CMD ["/usr/bin/shiny-server.sh"]
